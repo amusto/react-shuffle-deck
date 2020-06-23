@@ -2,6 +2,8 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 # 52 Pick up Cards Demo
 
+http://react-52-card-pickup.armandomusto.com/
+
 ## Available Scripts
 
 (Make sure to install libs first by running yarn)
