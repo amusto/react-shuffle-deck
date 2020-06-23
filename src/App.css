@@ -27,6 +27,11 @@
   margin: 10px;
 }
 
+.notes {
+  display: flex;
+  justify-content: center;
+}
+
 .deck-column {
   display: flex;
   justify-content: center;
@@ -36,8 +41,10 @@
   border: none!important;
 }
 
-.card-deck {
+.deck-of-cards {
+  align-items: center;
   border: none;
+  justify-content: center;
   width: 300px;
 }
 

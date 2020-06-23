@@ -9,7 +9,6 @@ class DeckComponent extends Component {
 
     this.state = {
 			deck: [],
-	    // resetFn: this.reset
 	    shuffleFn: this.shuffle,
 	    dealFn: this.deal,
 	    selectedCard: ''
@@ -20,9 +19,11 @@ class DeckComponent extends Component {
   }
 
 	deal(){
-	  this.setState({
-		  selectedCard: this.state.deck.pop()
-	  });
+  	if (this.state.deck.length > 0) {
+		  this.setState({
+			  selectedCard: this.state.deck.pop()
+		  });
+	  }
 	}
 
 	shuffle() {
@@ -59,23 +60,28 @@ class DeckComponent extends Component {
     const { deck, selectedCard } = this.state;
 		const images = require.context('./assets/images', true);
 
-		console.log('deck', deck);
-
     return (
 		<Container className='board-container'>
 			<Row>
+				<Col className='xs-12 notes'>
+					<h3>Click deck in left column to deal a card and display it on the stack in the right column.</h3>
+				</Col>
+			</Row>
+			<Row>
 				<Col className='xs-12 app-header'>
-          <Button variant="primary" onClick={() => this.shuffle()}>Shuffle Deck</Button>{' '}
+          <Button variant="primary" disabled={deck.length === 52} onClick={() => this.shuffle()}>Shuffle Deck</Button>
 				</Col>
 			</Row>
 		  <Row>
 				<Col className='deck-column' xs={6}>
-					<Card className='card-deck' onClick={this.deal}>
+					<Card className='deck-of-cards' onClick={this.deal}>
+						<span>{deck.length}</span>
 					  <Card.Img variant="top" src={cardBack} />
 					</Card>
 				</Col>
 				<Col className='deck-column' xs={6}>
-					<Card className='card-deck'>
+					<Card className='deck-of-cards'>
+						<span>{52 - deck.length}</span>
 						{!selectedCard &&
 							<Card.Img variant="top" src={cardBack} />
 						}
